@@ -22,6 +22,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>backend</module>
-        <module>testrail</module>
+        <module>testrail</module> <!-- Submodule to import and export data between taf and testrail -->
     </modules>
 </project>

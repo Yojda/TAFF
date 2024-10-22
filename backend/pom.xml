@@ -88,6 +88,13 @@
 			<artifactId>opencsv</artifactId>
 			<version>5.5</version> <!-- Use the latest version available -->
 		</dependency>
+
+		<!-- Module dependencies -->
+		<dependency>
+			<groupId>ca.etsmtl.taf</groupId>
+			<artifactId>testrail</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
