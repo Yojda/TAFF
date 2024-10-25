@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://nostrasoft.com:3306/nostr321_taf-db
-    username: nostr321_taf
-    password: JKaVLX75iHwtrHc
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/taf-db
+    username: taf
+    password: taf
   jpa:
     defer-datasource-initialization: true
     hibernate:
