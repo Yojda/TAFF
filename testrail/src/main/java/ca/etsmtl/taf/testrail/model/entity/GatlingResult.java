@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.model;
+package ca.etsmtl.taf.testrail.model.entity;
 
 import javax.persistence.*;
 import lombok.Getter;
@@ -30,4 +30,5 @@ public class GatlingResult {
 
     @Column(name = "assignedto_id")
     private Integer assignedToId;
+
 }

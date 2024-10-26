@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.model;
+package ca.etsmtl.taf.testrail.model.entity;
 
 
 import lombok.Getter;
