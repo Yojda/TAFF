@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service.refresh.data;
+package ca.etsmtl.taf.testrail.service.query.refresh;
 
 public class RefreshProject implements Refresh {
     /*

@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service.load.data;
+package ca.etsmtl.taf.testrail.service.query.load;
 
 
 import lombok.Getter;
