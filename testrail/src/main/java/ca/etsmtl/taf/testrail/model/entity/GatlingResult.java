@@ -4,11 +4,18 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "tr_gatling_result")
 @Getter
 @Setter
 public class GatlingResult {
+    /*
+    * Assisted by IA (copilot & chatGPT & intellij)
+    * Tests : TODO
+    * */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,5 +37,9 @@ public class GatlingResult {
 
     @Column(name = "assignedto_id")
     private Integer assignedToId;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date")
+    private Date date;
 
 }
