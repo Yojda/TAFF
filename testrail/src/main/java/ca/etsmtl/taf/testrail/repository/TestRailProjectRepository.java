@@ -7,6 +7,13 @@ import java.util.Optional;
 
 public interface TestRailProjectRepository extends JpaRepository<TestRailProject, Long> {
 
+    /*
+    * This interface is used to interact with the TestRailProject table in the database.
+    * TODO
+    *     To be completed and tested
+    * Assisted by IA (copilot & chatGPT & intellij)
+    * */
+
     Optional<TestRailProject> findByTafId(Long tafId);
 
     Optional<TestRailProject> findById(Integer id);

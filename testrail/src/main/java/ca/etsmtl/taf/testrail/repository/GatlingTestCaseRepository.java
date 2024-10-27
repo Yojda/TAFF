@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface GatlingTestCaseRepository extends JpaRepository<GatlingTestCase, Long> {
     /*
+    * This interface is used to interact with the GatlingTestCase table in the database.
     * TODO
     *       To be completed and tested
     * Assisted by IA (copilot & chatGPT & intellij)

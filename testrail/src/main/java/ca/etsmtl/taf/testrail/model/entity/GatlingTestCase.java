@@ -9,6 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GatlingTestCase {
+
+    /*
+    * Assisted by IA (copilot & chatGPT & intellij)
+    * Tests : TODO
+    * */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
