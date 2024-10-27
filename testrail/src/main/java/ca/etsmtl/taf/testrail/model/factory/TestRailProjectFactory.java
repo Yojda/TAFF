@@ -4,6 +4,8 @@ import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
+
 public class TestRailProjectFactory {
     public static TestRailProject create(String name) {
         TestRailProject project = new TestRailProject();
@@ -47,7 +49,7 @@ public class TestRailProjectFactory {
         }
 
         if (projectJson.has("completed_on") && !projectJson.isNull("completed_on")) {
-            project.setCompletedOn(String.valueOf(projectJson.getLong("completed_on")));
+            project.setCompletedOn(Timestamp.valueOf(String.valueOf(projectJson.getLong("completed_on"))));
         }
 
         if (projectJson.has("suite_mode") && !projectJson.isNull("suite_mode")) {
