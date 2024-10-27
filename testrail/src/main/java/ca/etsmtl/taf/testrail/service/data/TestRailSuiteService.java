@@ -1,7 +1,7 @@
 package ca.etsmtl.taf.testrail.service.data;
 
 import ca.etsmtl.taf.testrail.model.entity.TestRailSuite;
-import ca.etsmtl.taf.testrail.repository.TestRAilSuiteRepository;
+import ca.etsmtl.taf.testrail.repository.TestRailSuiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class TestRailSuiteService {
      * */
 
     @Autowired
-    private TestRAilSuiteRepository testRAilSuiteRepository;
+    private TestRailSuiteRepository testRAilSuiteRepository;
 
     public TestRailSuite save(TestRailSuite suite) {
         return testRAilSuiteRepository.save(suite);

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface TestRAilSuiteRepository extends JpaRepository<TestRailSuite, Long> {
+public interface TestRailSuiteRepository extends JpaRepository<TestRailSuite, Long> {
     /*
      * This interface is used to interact with the TestRailProject table in the database.
      * TODO
