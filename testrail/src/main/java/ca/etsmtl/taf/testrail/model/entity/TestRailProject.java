@@ -21,7 +21,7 @@ public class TestRailProject extends TestRailData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tafId;
+    private Long id;
 
     @Column(name = "tr_id", unique = true)
     private Integer TRId;

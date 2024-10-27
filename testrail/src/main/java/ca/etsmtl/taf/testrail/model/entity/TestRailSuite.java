@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "tr_suite")
@@ -21,7 +20,7 @@ public class TestRailSuite {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long tafId;
+        private Long id;
 
         @Column(name = "tr_id", unique = true)
         private Integer TRId;
