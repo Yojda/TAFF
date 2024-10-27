@@ -22,6 +22,9 @@ public class TestRailUser extends TestRailData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tafId;
 
+    @Column(name = "tr_id", unique = true)
+    private Integer TRId;
+
     @Column(name = "username", nullable = false)
     private String username;
 

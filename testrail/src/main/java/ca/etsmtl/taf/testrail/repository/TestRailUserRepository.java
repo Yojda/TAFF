@@ -11,6 +11,9 @@ public interface TestRailUserRepository extends JpaRepository<TestRailUser, Long
      * Tests : TODO
      * */
 
+    // Find a TestRailUser by their unique id (TR id)
+    Optional<TestRailUser> findByTRId(Integer id);
+
     // Find a TestRailUser by their unique username
     Optional<TestRailUser> findByUsername(String username);
 

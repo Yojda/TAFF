@@ -26,11 +26,11 @@ public class TestRailProjectService {
     }
 
     public Optional<TestRailProject> findByTafId(Long tafId) {
-        return testRailProjectRepository.findByTafId(tafId);
+        return testRailProjectRepository.findById(tafId);
     }
 
-    public Optional<TestRailProject> findById(Integer id) {
-        return testRailProjectRepository.findById(id);
+    public Optional<TestRailProject> findByTRId(Integer id) {
+        return testRailProjectRepository.findByTRId(id);
     }
 
     public Optional<TestRailProject> findByName(String name) {

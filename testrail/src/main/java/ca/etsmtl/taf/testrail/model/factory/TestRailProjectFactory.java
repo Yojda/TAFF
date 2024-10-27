@@ -31,7 +31,7 @@ public class TestRailProjectFactory {
         }
 
         if (projectJson.has("id") && !projectJson.isNull("id")) {
-            project.setId(projectJson.getInt("id"));
+            project.setTRId(projectJson.getInt("id"));
         }
 
         if (projectJson.has("announcement") && !projectJson.isNull("announcement")) {

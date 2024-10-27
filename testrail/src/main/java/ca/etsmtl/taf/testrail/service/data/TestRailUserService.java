@@ -31,6 +31,11 @@ public class TestRailUserService {
         return repository.findById(tafId);
     }
 
+    // Find a TestRailUser by their unique ID (TR id)
+    public Optional<TestRailUser> findByTRId(Integer id) {
+        return repository.findByTRId(id);
+    }
+
     // Find a TestRailUser by their unique username
     public Optional<TestRailUser> findByUsername(String username) {
         return repository.findByUsername(username);
@@ -50,4 +55,11 @@ public class TestRailUserService {
     public void deleteById(Long tafId) {
         repository.deleteById(tafId);
     }
+
+    // Delete all TestRailUser entries
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+
 }

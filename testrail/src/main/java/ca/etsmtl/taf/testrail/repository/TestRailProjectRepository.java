@@ -14,9 +14,7 @@ public interface TestRailProjectRepository extends JpaRepository<TestRailProject
     * Assisted by IA (copilot & chatGPT & intellij)
     * */
 
-    Optional<TestRailProject> findByTafId(Long tafId);
-
-    Optional<TestRailProject> findById(Integer id);
+    Optional<TestRailProject> findByTRId(Integer id);
 
     Optional<TestRailProject> findByName(String name);
 
