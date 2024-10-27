@@ -4,6 +4,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -38,7 +39,7 @@ public class TestRailProject extends TestRailData {
     private Boolean isCompleted;
 
     @Column(name = "completed_on")
-    private String completedOn;
+    private Timestamp completedOn;
 
     @Column(name = "suite_mode")
     private Integer suiteMode;
