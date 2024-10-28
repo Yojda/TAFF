@@ -23,7 +23,7 @@ public class TestRailProject extends TestRailData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tr_id", unique = true)
+    @Column(name = "tr_id", unique = true, nullable = true)
     private Integer TRId;
 
     @Column(name = "name", nullable = false, unique = true)

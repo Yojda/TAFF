@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Table(name = "tr_suite")
 @Getter
 @Setter
-public class TestRailSuite {
+public class TestRailSuite extends TestRailData{
 
         /*
         * Class to save suites from TestRail in TAF database to be used in the application.

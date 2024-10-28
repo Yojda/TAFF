@@ -2,9 +2,11 @@ package ca.etsmtl.taf.testrail.repository;
 
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface TestRailProjectRepository extends JpaRepository<TestRailProject, Long> {
 
     /*

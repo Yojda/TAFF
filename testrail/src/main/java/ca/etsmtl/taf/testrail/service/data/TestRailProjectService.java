@@ -22,7 +22,7 @@ public class TestRailProjectService {
     private TestRailProjectRepository testRailProjectRepository;
 
     public TestRailProject save(TestRailProject project) {
-        return testRailProjectRepository.save(project);
+         return testRailProjectRepository.save(project);
     }
 
     public Optional<TestRailProject> findByTafId(Long tafId) {

@@ -3,8 +3,10 @@ package ca.etsmtl.taf.testrail.model.factory;
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+
 
 public class TestRailProjectFactory {
     public static TestRailProject create(String name) {

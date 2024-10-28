@@ -28,8 +28,9 @@ public class ProjectQueryTestRail implements QueryTestRail {
 
     private final HttpSenderToTestRail httpSenderToTestRail;
 
-    public ProjectQueryTestRail(HttpSenderToTestRail httpSenderToTestRail) {
-        this.httpSenderToTestRail = httpSenderToTestRail;
+
+    public ProjectQueryTestRail() {
+        this.httpSenderToTestRail = new HttpSenderToTestRail(); // TODO : adapt to each user and environment
     }
 
 
