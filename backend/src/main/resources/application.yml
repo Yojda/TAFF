@@ -28,5 +28,11 @@ taf:
     selenium_container_url: http://selenium
     selenium_container_port: 8090
 
+testrail:
+  base-url: "https://leofornoff.testrail.io/index.php?/api/v2/"
+  username: "leo.fornoff.1@ens.etsmtl.ca"
+  password: "Valid8-Outpost2-Caravan0-Unlovable9-Easter7"
+
+
 server:
   port: 8083
