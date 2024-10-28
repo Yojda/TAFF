@@ -11,14 +11,14 @@ spring:
       dialect : ${spring.jpa.properties.hibernate.dialect}
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MariaDBDialect
   messages:
     basename: validation
     encoding: ISO-8859-1
   sql:
     init:
       mode: always
-      platform: mysql
+      platform: mariadb
 taf:
   app:
     jwtSecret: bezKoderSecretKey
