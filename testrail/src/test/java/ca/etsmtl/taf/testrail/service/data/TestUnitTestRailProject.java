@@ -15,9 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ContextConfiguration(classes = TestConfig.class)
 @DataJpaTest(properties = {
@@ -27,6 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestUnitTestRailProject {
 
     private TestRailProject testRailProject;
+    private TestRailProject testRailProject2;
+    private TestRailProject testRailProject3;
     private String defaultName;
 
     @Autowired
@@ -37,7 +39,8 @@ public class TestUnitTestRailProject {
         testRailProjectService.deleteAll(); // Drop all data from the table
         defaultName = "defaultName_" + LocalDate.now() + LocalTime.now() + TestConfig.getRandomString(16);
         testRailProject = TestRailProjectFactory.create(defaultName);
-
+        testRailProject2 = TestRailProjectFactory.create(defaultName + "_2");
+        testRailProject3 = TestRailProjectFactory.create(defaultName + "_3");
     }
 
     @Test
@@ -248,4 +251,108 @@ public class TestUnitTestRailProject {
         assertEquals(updatedTestRailProject, getTestRailProject);
     }
 
+    @Test
+    public void testFindByTafId() {
+        /* Arrange */
+        testRailProjectService.save(testRailProject);
+        testRailProjectService.save(testRailProject2);
+        testRailProjectService.save(testRailProject3);
+        Long tafId = testRailProject.getId();
+        Long tafId2 = testRailProject2.getId();
+        Long tafId3 = testRailProject3.getId();
+
+        /* Act */
+        TestRailProject getTestRailProject = testRailProjectService.findByTafId(tafId).get();
+        TestRailProject getTestRailProject2 = testRailProjectService.findByTafId(tafId2).get();
+        TestRailProject getTestRailProject3 = testRailProjectService.findByTafId(tafId3).get();
+
+        /* Assert */
+        assertNotNull(getTestRailProject);
+        assertNotNull(getTestRailProject2);
+        assertNotNull(getTestRailProject3);
+
+        assertEquals(testRailProject, getTestRailProject);
+        assertEquals(testRailProject2, getTestRailProject2);
+        assertEquals(testRailProject3, getTestRailProject3);
+    }
+
+    @Test
+    public void testFindByTRId() {
+        /* Arrange */
+        int trId = (new Random()).nextInt(Integer.MAX_VALUE);
+        int trId2 = (new Random()).nextInt(Integer.MAX_VALUE);
+        int trId3 = (new Random()).nextInt(Integer.MAX_VALUE);
+
+
+        testRailProject.setTRId(trId);
+        testRailProject2.setTRId(trId2);
+        testRailProject3.setTRId(trId3);
+
+        testRailProjectService.save(testRailProject);
+        testRailProjectService.save(testRailProject2);
+        testRailProjectService.save(testRailProject3);
+
+        /* Act */
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(trId).get();
+        TestRailProject getTestRailProject2 = testRailProjectService.findByTRId(trId2).get();
+        TestRailProject getTestRailProject3 = testRailProjectService.findByTRId(trId3).get();
+
+        /* Assert */
+        assertNotNull(getTestRailProject);
+        assertNotNull(getTestRailProject2);
+        assertNotNull(getTestRailProject3);
+
+        assertEquals(trId, getTestRailProject.getTRId());
+        assertEquals(trId2, getTestRailProject2.getTRId());
+        assertEquals(trId3, getTestRailProject3.getTRId());
+
+        assertEquals(testRailProject, getTestRailProject);
+        assertEquals(testRailProject2, getTestRailProject2);
+        assertEquals(testRailProject3, getTestRailProject3);
+    }
+
+    @Test
+    public void testFindByName() {
+        /* Arrange */
+        testRailProjectService.save(testRailProject);
+        testRailProjectService.save(testRailProject2);
+        testRailProjectService.save(testRailProject3);
+
+        /* Act */
+        TestRailProject getTestRailProject = testRailProjectService.findByName(testRailProject.getName()).get();
+        TestRailProject getTestRailProject2 = testRailProjectService.findByName(testRailProject2.getName()).get();
+        TestRailProject getTestRailProject3 = testRailProjectService.findByName(testRailProject3.getName()).get();
+
+        /* Assert */
+        assertNotNull(getTestRailProject);
+        assertNotNull(getTestRailProject2);
+        assertNotNull(getTestRailProject3);
+
+        assertEquals(testRailProject, getTestRailProject);
+        assertEquals(testRailProject2, getTestRailProject2);
+        assertEquals(testRailProject3, getTestRailProject3);
+    }
+
+
+    @Test
+    public void testDeleteByTafId() {
+        /* Arrange */
+        testRailProjectService.save(testRailProject);
+        testRailProjectService.save(testRailProject2);
+        testRailProjectService.save(testRailProject3);
+
+        Long tafId = testRailProject.getId();
+        Long tafId2 = testRailProject2.getId();
+        Long tafId3 = testRailProject3.getId();
+
+        /* Act */
+        testRailProjectService.deleteByTafId(tafId3);
+        testRailProjectService.deleteByTafId(tafId);
+        testRailProjectService.deleteByTafId(tafId2);
+
+        /* Assert */
+        assertTrue(testRailProjectService.findByTafId(tafId).isEmpty());
+        assertTrue(testRailProjectService.findByTafId(tafId2).isEmpty());
+        assertTrue(testRailProjectService.findByTafId(tafId3).isEmpty());
+    }
 }
