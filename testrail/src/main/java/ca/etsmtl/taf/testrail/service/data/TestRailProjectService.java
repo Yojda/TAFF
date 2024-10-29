@@ -40,4 +40,8 @@ public class TestRailProjectService {
     public void deleteByTafId(Long tafId) {
         testRailProjectRepository.deleteById(tafId);
     }
+
+    public void deleteAll() {
+        testRailProjectRepository.deleteAll();
+    }
 }
