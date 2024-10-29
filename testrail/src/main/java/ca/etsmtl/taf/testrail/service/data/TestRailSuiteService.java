@@ -31,8 +31,16 @@ public class TestRailSuiteService {
         return testRAilSuiteRepository.findByTRId(id);
     }
 
+    public Optional<TestRailSuite> findByName(String name) {
+        return testRAilSuiteRepository.findByName(name);
+    }
+
     public void deleteByTafId(Long tafId) {
         testRAilSuiteRepository.deleteById(tafId);
+    }
+
+    public void deleteAll() {
+        testRAilSuiteRepository.deleteAll();
     }
 
 
