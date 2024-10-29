@@ -17,4 +17,6 @@ public interface TestRailSuiteRepository extends JpaRepository<TestRailSuite, Lo
 
     Optional<TestRailSuite> findByTRId(Integer id);
 
+    Optional<TestRailSuite> findByName(String name);
+
 }
