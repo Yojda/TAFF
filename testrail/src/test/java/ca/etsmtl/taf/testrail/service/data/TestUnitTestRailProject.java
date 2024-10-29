@@ -54,105 +54,198 @@ public class TestUnitTestRailProject {
         assertEquals(defaultName, savedTestRailProject.getName());
     }
 
-    @Test
-    public void testUpdate() {
-
-        // ID
-
-        // Arrange
+    public void beforeUpdate() {
         testRailProject.setTRId(2);
+        testRailProjectService.save(testRailProject);
+    }
 
-        // Act
+    @Test
+    public void testUpdateId() {
+        /* Arrange */
+        beforeUpdate();
+        testRailProject.setTRId(3);
+
+        /* Act */
         TestRailProject savedTestRailProject = testRailProjectService.save(testRailProject);
 
-        // Assert
+        /* Assert */
         assertNotNull(savedTestRailProject);
         assertEquals(testRailProject, savedTestRailProject);
         assertEquals(defaultName, savedTestRailProject.getName());
-        assertEquals(2, savedTestRailProject.getTRId());
+        assertEquals(3, savedTestRailProject.getTRId());
+    }
 
-        // Updated Name
-
+    @Test
+    public void testUpdateName() {
+        /* Arrange */
+        beforeUpdate();
         String updatedName = "updatedName_" + LocalDate.now() + LocalTime.now() + TestConfig.getRandomString(16);
-        savedTestRailProject.setName(updatedName);
-        TestRailProject updatedTestRailProject = testRailProjectService.save(savedTestRailProject);
-        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
-        System.out.println("updatedTestRailProject : " + updatedTestRailProject);
 
+        /* Act */
+        testRailProject.setName(updatedName);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
         assertNotNull(updatedTestRailProject);
-        assertEquals(savedTestRailProject, updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
         assertEquals(updatedName, updatedTestRailProject.getName());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateAnnouncement() {
+        /* Arrange */
+        beforeUpdate();
+        String updatedAnnouncement = "updatedAnnouncement_" + LocalDate.now() + LocalTime.now() + TestConfig.getRandomString(16);
+
+        /* Act */
+        testRailProject.setAnnouncement(updatedAnnouncement);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedAnnouncement, updatedTestRailProject.getAnnouncement());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateShowAnnouncement() {
+        /* Arrange */
+        beforeUpdate();
+        boolean updatedShowAnnouncement = true;
+
+        /* Act */
+        testRailProject.setShowAnnouncement(updatedShowAnnouncement);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedShowAnnouncement, updatedTestRailProject.getShowAnnouncement());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateIsCompleted() {
+        /* Arrange */
+        beforeUpdate();
+        boolean updatedIsCompleted = true;
+
+        /* Act */
+        testRailProject.setIsCompleted(updatedIsCompleted);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedIsCompleted, updatedTestRailProject.getIsCompleted());
         assertEquals(2, updatedTestRailProject.getTRId());
         assertEquals(updatedTestRailProject, getTestRailProject);
 
-        // Updated announcement
+    }
 
-        String updatedAnnouncement = "updatedAnnouncement_" + LocalDate.now() + LocalTime.now() + TestConfig.getRandomString(16);
-        updatedTestRailProject.setAnnouncement(updatedAnnouncement);
-        TestRailProject updatedTestRailProject2 = testRailProjectService.save(updatedTestRailProject);
-        TestRailProject getTestRailProject2 = testRailProjectService.findByTRId(2).get();
-
-        assertNotNull(updatedTestRailProject2);
-        assertEquals(updatedTestRailProject, updatedTestRailProject2);
-        assertEquals(updatedAnnouncement, updatedTestRailProject2.getAnnouncement());
-        assertEquals(2, updatedTestRailProject2.getTRId());
-        assertEquals(updatedTestRailProject2, getTestRailProject2);
-
-        // Updated showAnnouncement
-
-        boolean updatedShowAnnouncement = true;
-        updatedTestRailProject.setShowAnnouncement(updatedShowAnnouncement);
-        TestRailProject updatedTestRailProject3 = testRailProjectService.save(updatedTestRailProject2);
-        TestRailProject getTestRailProject3 = testRailProjectService.findByTRId(2).get();
-
-        assertNotNull(updatedTestRailProject3);
-        assertEquals(updatedTestRailProject2, updatedTestRailProject3);
-        assertEquals(updatedShowAnnouncement, updatedTestRailProject3.getShowAnnouncement());
-        assertEquals(2, updatedTestRailProject3.getTRId());
-        assertEquals(updatedTestRailProject3, getTestRailProject3);
-
-        // Updated isCompleted
-
-        boolean updatedIsCompleted = true;
-        updatedTestRailProject2.setIsCompleted(updatedIsCompleted);
-        TestRailProject updatedTestRailProject4 = testRailProjectService.save(updatedTestRailProject2);
-        TestRailProject getTestRailProject4 = testRailProjectService.findByTRId(2).get();
-
-        assertNotNull(updatedTestRailProject4);
-        assertEquals(updatedTestRailProject2, updatedTestRailProject4);
-        assertEquals(updatedIsCompleted, updatedTestRailProject4.getIsCompleted());
-        assertEquals(2, updatedTestRailProject4.getTRId());
-        assertEquals(updatedTestRailProject4, getTestRailProject3);
-
-        // Updated completedOn
-
+    @Test
+    public void testUpdateCompletedOn() {
+        /* Arrange */
+        beforeUpdate();
         Timestamp updatedCompletedOn = new Timestamp(System.currentTimeMillis());
-        updatedTestRailProject2.setCompletedOn(updatedCompletedOn);
-        TestRailProject updatedTestRailProject5 = testRailProjectService.save(updatedTestRailProject2);
-        TestRailProject getTestRailProject5 = testRailProjectService.findByTRId(2).get();
 
-        assertNotNull(updatedTestRailProject5);
-        assertEquals(updatedTestRailProject2, updatedTestRailProject5);
-        assertEquals(updatedCompletedOn, updatedTestRailProject5.getCompletedOn());
-        assertEquals(2, updatedTestRailProject5.getTRId());
-        assertEquals(updatedTestRailProject5, getTestRailProject5);
+        /* Act */
+        testRailProject.setCompletedOn(updatedCompletedOn);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
 
-        // Updated suiteMode
-
-        int updatedSuiteMode = 1;
-        updatedTestRailProject2.setSuiteMode(updatedSuiteMode);
-        TestRailProject updatedTestRailProject6 = testRailProjectService.save(updatedTestRailProject2);
-        TestRailProject getTestRailProject6 = testRailProjectService.findByTRId(2).get();
-
-        assertNotNull(updatedTestRailProject6);
-        assertEquals(updatedTestRailProject2, updatedTestRailProject6);
-        assertEquals(updatedSuiteMode, updatedTestRailProject6.getSuiteMode());
-        assertEquals(2, updatedTestRailProject6.getTRId());
-
-
-
-
-
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedCompletedOn, updatedTestRailProject.getCompletedOn());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
 
     }
+
+    @Test
+    public void testUpdateSuiteMode() {
+        /* Arrange */
+        beforeUpdate();
+        int updatedSuiteMode = 1;
+
+        /* Act */
+        testRailProject.setSuiteMode(updatedSuiteMode);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedSuiteMode, updatedTestRailProject.getSuiteMode());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateDefaultRoleId() {
+        /* Arrange */
+        beforeUpdate();
+        int updatedDefaultRoleId = 1;
+
+        /* Act */
+        testRailProject.setDefaultRoleId(updatedDefaultRoleId);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedDefaultRoleId, updatedTestRailProject.getDefaultRoleId());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateCaseStatusesEnabled() {
+        /* Arrange */
+        beforeUpdate();
+        boolean updatedCaseStatusesEnabled = true;
+
+        /* Act */
+        testRailProject.setCaseStatusesEnabled(updatedCaseStatusesEnabled);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedCaseStatusesEnabled, updatedTestRailProject.getCaseStatusesEnabled());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
+    @Test
+    public void testUpdateUrl() {
+        /* Arrange */
+        beforeUpdate();
+        String updatedUrl = "updatedUrl_" + LocalDate.now() + LocalTime.now() + TestConfig.getRandomString(16);
+
+        /* Act */
+        testRailProject.setUrl(updatedUrl);
+        TestRailProject updatedTestRailProject = testRailProjectService.save(testRailProject);
+        TestRailProject getTestRailProject = testRailProjectService.findByTRId(2).get();
+
+        /* Assert */
+        assertNotNull(updatedTestRailProject);
+        assertEquals(2, updatedTestRailProject.getTRId());
+        assertEquals(updatedUrl, updatedTestRailProject.getUrl());
+        assertEquals(testRailProject, updatedTestRailProject);
+        assertEquals(updatedTestRailProject, getTestRailProject);
+    }
+
 }
