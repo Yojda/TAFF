@@ -35,12 +35,11 @@ public class TempTestCaseGatling {
     }
 
     private String scenarioName;
-    private String requestName;
     private String baseUrl;
     private String userInjection;
 
     private Map<String, Integer> usersInjection = new HashMap<>();
-    public void parse() {
+    public GatlingTestCase parse() {
         logger.setLevel(Level.INFO);
         String SimulationPath = "SimpleSimulation.java";
         logger.info("SimulationPath=" + SimulationPath);
@@ -62,6 +61,7 @@ public class TempTestCaseGatling {
         // Extract base URL
         Matcher baseUrlMatcher = baseUrlPattern.matcher(gatlingScript);
         if (baseUrlMatcher.find()) {
+            this.baseUrl = baseUrlMatcher.group(1);
             logger.info("Base URL: " + baseUrlMatcher.group(1));
         } else {
             logger.warning("Base URL not found in the Gatling script.");
@@ -86,7 +86,13 @@ public class TempTestCaseGatling {
             logger.warning("User injection not found in the Gatling script.");
         }
 
+        // Stock in GatlingTestCase object
+        GatlingTestCase gatlingTestCase = new GatlingTestCase();
+        gatlingTestCase.setScenarioName(this.scenarioName);
+        gatlingTestCase.setBaseUrl(this.baseUrl);
+        gatlingTestCase.setUserInjection(this.userInjection);
+        logger.info("GatlingTestCase: " + gatlingTestCase);
 
-
+        return gatlingTestCase;
     }
 }

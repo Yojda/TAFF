@@ -19,27 +19,12 @@ public class GatlingTestCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "section_id", nullable = false)
-    private Integer sectionId;
+    @Column(name = "scenario_name", nullable = false)
+    private String scenarioName;
 
-    @Column(name = "title", nullable = false)
-    private String title;
+    @Column(name = "base_url", nullable = false)
+    private String baseUrl;
 
-    @Column(name = "template_id")
-    private Integer templateId;
-
-    @Column(name = "type_id")
-    private Integer typeId;
-
-    @Column(name = "priority_id")
-    private Integer priorityId;
-
-    @Column(name = "estimate")
-    private String estimate;
-
-    @Column(name = "milestone_id")
-    private Integer milestoneId;
-
-    @Column(name = "refs")
-    private String refs;
+    @Column(name = "user_injection")
+    private String userInjection;
 }

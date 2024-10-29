@@ -1,6 +1,7 @@
 package ca.etsmtl.taf.testrail.service.collector;
 
 import ca.etsmtl.taf.testrail.TestConfig;
+import ca.etsmtl.taf.testrail.model.entity.GatlingTestCase;
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import ca.etsmtl.taf.testrail.model.factory.TestRailProjectFactory;
 import ca.etsmtl.taf.testrail.repository.TestRailProjectRepository;
@@ -33,6 +34,10 @@ public class TestTempTestCaseGatling {
     @Test
     public void test() {
         TempTestCaseGatling tempTestCaseGatling = new TempTestCaseGatling();
-        tempTestCaseGatling.parse();
+        GatlingTestCase gatlingTestCase = tempTestCaseGatling.parse();
+        assertNotNull(gatlingTestCase);
+        assertEquals("My First Scenario", gatlingTestCase.getScenarioName());
+        assertEquals("https://wikijs.fornoff.fr", gatlingTestCase.getBaseUrl());
+        assertEquals("(Scenario.injectOpen(rampUsers(10).during(5))).protocols(httpProtocol)", gatlingTestCase.getUserInjection());
     }
 }
