@@ -1,9 +1,8 @@
 package ca.etsmtl.taf.testrail.service.collector;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import ca.etsmtl.taf.testrail.model.entity.GatlingTestCase;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.FileHandler;
@@ -19,6 +18,9 @@ public class TempTestCaseGatling {
 
     static {
         try {
+            String currentPath = System.getProperty("user.dir");
+            logger.info("Chemin de l'exécution : " + currentPath);
+
             File logDir = new File("./logs");
             if (!logDir.exists()) {
                 logDir.mkdirs(); // Crée le dossier "logs" si inexistant
@@ -40,10 +42,11 @@ public class TempTestCaseGatling {
     private Map<String, Integer> usersInjection = new HashMap<>();
     public void parse() {
         logger.setLevel(Level.INFO);
-        String SimulationPath = "backend/src/main/resources/testrail/SimpleSimulation.java";
+        String SimulationPath = "SimpleSimulation.java";
         logger.info("SimulationPath=" + SimulationPath);
         String gatlingScript = "";
-        try (BufferedReader reader = new BufferedReader(new FileReader(SimulationPath))) {
+        try (InputStream inputStream = TempTestCaseGatling.class.getClassLoader().getResourceAsStream(SimulationPath);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 gatlingScript += line + "\n";
@@ -54,7 +57,6 @@ public class TempTestCaseGatling {
 
         Pattern baseUrlPattern = Pattern.compile("baseUrl\\(\"([^\"]+)\"\\)");
         Pattern scenarioTitlePattern = Pattern.compile("scenario\\(\"([^\"]+)\"\\)");
-        Pattern requestPattern = Pattern.compile("exec\\(http\\(\"([^\"]+)\"\\)\\s*\\.get\\(\"([^\"]+)\"\\)\\);");
         Pattern userInjectionPattern = Pattern.compile("setUp(\\(.*?);", Pattern.DOTALL);
 
         // Extract base URL
@@ -68,26 +70,23 @@ public class TempTestCaseGatling {
         // Extract scenario title
         Matcher scenarioTitleMatcher = scenarioTitlePattern.matcher(gatlingScript);
         if (scenarioTitleMatcher.find()) {
+            this.scenarioName = scenarioTitleMatcher.group(1);
             logger.info("Scenario Title: " + scenarioTitleMatcher.group(1));
         } else {
             logger.warning("Scenario title not found in the Gatling script.");
         }
 
-        // Extract scenario requests
-        Matcher requestMatcher = requestPattern.matcher(gatlingScript);
-        if (requestMatcher.find()) {
-            logger.info("Request: " + requestMatcher.group(1) + " - " + requestMatcher.group(2));
-        } else {
-            logger.warning("Requests not found in the Gatling script.");
-        }
 
         // Extract user injection
         Matcher userInjectionMatcher = userInjectionPattern.matcher(gatlingScript);
         if (userInjectionMatcher.find()) {
-            this.userInjection = userInjectionMatcher.replaceAll("\\s");
-            logger.info("User Injection: " + userInjectionMatcher.group(1));
+            this.userInjection = userInjectionMatcher.group(1).replaceAll("\\s", "");
+            logger.info("User Injection: " + this.userInjection);
         } else {
             logger.warning("User injection not found in the Gatling script.");
         }
+
+
+
     }
 }
