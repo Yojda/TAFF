@@ -1,6 +1,7 @@
 package ca.etsmtl.taf.testrail.service.collector;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,7 +19,12 @@ public class TempTestCaseGatling {
 
     static {
         try {
-            FileHandler fileHandler = new FileHandler("logs/TempTestCaseGatling.log", true);
+            File logDir = new File("./logs");
+            if (!logDir.exists()) {
+                logDir.mkdirs(); // Crée le dossier "logs" si inexistant
+            }
+
+            FileHandler fileHandler = new FileHandler("./logs/TempTestCaseGatling.log", true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
         } catch (Exception e) {
@@ -29,7 +35,7 @@ public class TempTestCaseGatling {
     private String scenarioName;
     private String requestName;
     private String baseUrl;
-    private static String userInjection;
+    private String userInjection;
 
     private Map<String, Integer> usersInjection = new HashMap<>();
     public void parse() {
@@ -78,7 +84,7 @@ public class TempTestCaseGatling {
         // Extract user injection
         Matcher userInjectionMatcher = userInjectionPattern.matcher(gatlingScript);
         if (userInjectionMatcher.find()) {
-            userInjection = String sansEspaces = str.replaceAll("\\s", "");
+            this.userInjection = userInjectionMatcher.replaceAll("\\s");
             logger.info("User Injection: " + userInjectionMatcher.group(1));
         } else {
             logger.warning("User injection not found in the Gatling script.");
