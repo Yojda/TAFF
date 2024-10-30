@@ -15,7 +15,9 @@ public class TestRailCase extends TestRailData{
     /*
      * Class to save cases from TestRail in TAF database to be used in the application.
      * Class build assisted by IA (copilot & chatGPT & intellij)
-     * Tests : TODO
+     * Tests :
+     *       - Unit tests : TestUnitTestRailCase
+     *       - Integration tests : TODO
      * */
 
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)

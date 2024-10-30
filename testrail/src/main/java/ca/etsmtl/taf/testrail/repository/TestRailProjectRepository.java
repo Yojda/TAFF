@@ -11,8 +11,7 @@ public interface TestRailProjectRepository extends JpaRepository<TestRailProject
 
     /*
     * This interface is used to interact with the TestRailProject table in the database.
-    * TODO
-    *     To be completed and tested
+    * Tests : TestUnitTestRailProject
     * Assisted by IA (copilot & chatGPT & intellij)
     * */
 

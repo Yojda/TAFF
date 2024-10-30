@@ -12,8 +12,7 @@ public class TestRailSuiteService {
     /*
      * This class is used to interact with the GatlingResult table in the database.
      * Assisted by IA (copilot & chatGPT & intellij)
-     * Tests : TODO
-     *          To be completed and tested
+     * Tests : TestUnitTestRailProject
      * */
 
     @Autowired

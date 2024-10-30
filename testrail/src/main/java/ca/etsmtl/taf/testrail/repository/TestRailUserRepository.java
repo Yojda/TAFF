@@ -12,7 +12,7 @@ public interface TestRailUserRepository extends JpaRepository<TestRailUser, Long
     /*
      * This interface is used to interact with the TestRailUser table in the database.
      * Assisted by IA (copilot & chatGPT & intellij)
-     * Tests : TODO
+     * Tests : TestUnitTestRailUser
      * */
 
     // Find a TestRailUser by their unique id (TR id)

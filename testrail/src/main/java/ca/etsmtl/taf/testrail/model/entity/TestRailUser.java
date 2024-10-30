@@ -16,7 +16,9 @@ public class TestRailUser extends TestRailData {
     /*
     * Class to save users from TestRail.
     * Class build assisted by IA (copilot & chatGPT & intellij)
-    * Tests : TODO
+    * Tests :
+    *       - Unit tests : TestUnitTestRailUser
+    *      - Integration tests : TODO
     * */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

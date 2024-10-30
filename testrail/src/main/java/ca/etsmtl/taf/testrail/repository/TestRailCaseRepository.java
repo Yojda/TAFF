@@ -10,8 +10,7 @@ import java.util.Optional;
 public interface TestRailCaseRepository extends JpaRepository<TestRailCase, Long> {
     /*
      * This interface is used to interact with the TestRailProject table in the database.
-     * TODO
-     *     To be completed and tested
+     * Tests : TestUnitTestRailCase
      * Assisted by IA (copilot & chatGPT & intellij)
      * */
 
