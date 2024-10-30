@@ -10,9 +10,11 @@ import java.sql.Timestamp;
 
 
 public class TestRailUserFactory {
-    public static TestRailUser create(String name) {
+    public static TestRailUser create(String name, String password, String email) {
         TestRailUser user = new TestRailUser();
         user.setUsername(name);
+        user.setPassword(password);
+        user.setEmail(email);
         return user;
     }
 
@@ -49,8 +51,6 @@ public class TestRailUserFactory {
 
         if (projectJson.has("id") && !projectJson.isNull("id")) {
             user.setTRId(projectJson.getInt("id"));
-        } else {
-            throw new JSONException("id is required");
         }
 
         return user;
