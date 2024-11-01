@@ -2,7 +2,7 @@ package ca.etsmtl.taf.testrail.service.manager.query;
 
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import ca.etsmtl.taf.testrail.model.factory.TestRailProjectFactory;
-import ca.etsmtl.taf.testrail.service.manager.DataResponseFromTR;
+import ca.etsmtl.taf.testrail.service.manager.saving.DataResponseFromTR;
 
 import org.json.JSONException;
 import org.json.JSONObject;

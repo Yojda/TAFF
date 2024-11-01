@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service;
+package ca.etsmtl.taf.testrail.service.data;
 
 import ca.etsmtl.taf.testrail.model.entity.GatlingTestCase;
 import ca.etsmtl.taf.testrail.repository.GatlingTestCaseRepository;

@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service.manager;
+package ca.etsmtl.taf.testrail.service.manager.saving;
 
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import ca.etsmtl.taf.testrail.model.factory.TestRailProjectFactory;

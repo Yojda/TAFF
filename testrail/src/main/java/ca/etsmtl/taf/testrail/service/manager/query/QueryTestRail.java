@@ -1,7 +1,7 @@
 package ca.etsmtl.taf.testrail.service.manager.query;
 
 
-import ca.etsmtl.taf.testrail.service.manager.DataResponseFromTR;
+import ca.etsmtl.taf.testrail.service.manager.saving.DataResponseFromTR;
 
 interface QueryTestRail {
     /*
@@ -11,7 +11,6 @@ interface QueryTestRail {
 
 
     DataResponseFromTR add(String name);
-
 
     DataResponseFromTR delete(int projectId);
 }
