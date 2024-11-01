@@ -55,6 +55,9 @@ public class TestRailProject extends TestRailData {
     @Column(name = "url")
     private String url;
 
+    @Column(name="is_saved")
+    private Boolean isSaved=false;
+
     @ManyToMany(mappedBy = "projects")
     private List<TestRailUser> users;
 }

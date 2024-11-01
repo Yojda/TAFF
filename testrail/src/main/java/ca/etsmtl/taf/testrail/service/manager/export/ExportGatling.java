@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service.export;
+package ca.etsmtl.taf.testrail.service.manager.export;
 
 public class ExportGatling implements ExportServiceInterface {
     @Override

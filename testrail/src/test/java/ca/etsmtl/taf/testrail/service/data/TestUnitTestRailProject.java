@@ -3,13 +3,10 @@ package ca.etsmtl.taf.testrail.service.data;
 import ca.etsmtl.taf.testrail.TestConfig;
 import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import ca.etsmtl.taf.testrail.model.factory.TestRailProjectFactory;
-import ca.etsmtl.taf.testrail.repository.TestRailProjectRepository;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.sql.Timestamp;

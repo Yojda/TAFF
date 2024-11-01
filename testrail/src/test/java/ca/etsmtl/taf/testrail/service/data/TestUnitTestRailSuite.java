@@ -2,7 +2,6 @@ package ca.etsmtl.taf.testrail.service.data;
 
 
 import ca.etsmtl.taf.testrail.TestConfig;
-import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
 import ca.etsmtl.taf.testrail.model.entity.TestRailSuite;
 import ca.etsmtl.taf.testrail.model.factory.TestRailSuiteFactory;
 import org.junit.jupiter.api.BeforeEach;
