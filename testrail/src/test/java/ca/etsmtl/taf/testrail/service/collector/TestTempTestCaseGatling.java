@@ -1,18 +1,12 @@
 package ca.etsmtl.taf.testrail.service.collector;
 
-import ca.etsmtl.taf.testrail.TestConfig;
 import ca.etsmtl.taf.testrail.model.entity.GatlingTestCase;
-import ca.etsmtl.taf.testrail.model.entity.TestRailProject;
-import ca.etsmtl.taf.testrail.model.factory.TestRailProjectFactory;
-import ca.etsmtl.taf.testrail.repository.TestRailProjectRepository;
-import ca.etsmtl.taf.testrail.service.collector.TempTestCaseGatling;
+import ca.etsmtl.taf.testrail.model.entity.TestRailCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -40,4 +34,27 @@ public class TestTempTestCaseGatling {
         assertEquals("https://wikijs.fornoff.fr", gatlingTestCase.getBaseUrl());
         assertEquals("(Scenario.injectOpen(rampUsers(10).during(5))).protocols(httpProtocol)", gatlingTestCase.getUserInjection());
     }
+
+    @Test
+    public void testWithFileInRessources() {
+        String fileName = "SimpleSimulation.java";
+        TempTestCaseGatling tempTestCaseGatling = new TempTestCaseGatling();
+        GatlingTestCase gatlingTestCase = tempTestCaseGatling.parse(fileName);
+        assertNotNull(gatlingTestCase);
+        assertEquals("My First Scenario", gatlingTestCase.getScenarioName());
+        assertEquals("https://wikijs.fornoff.fr", gatlingTestCase.getBaseUrl());
+        assertEquals("(Scenario.injectOpen(rampUsers(10).during(5))).protocols(httpProtocol)", gatlingTestCase.getUserInjection());
+    }
+
+    @Test
+    public void testToTestRailCase() {
+        TempTestCaseGatling tempTestCaseGatling = new TempTestCaseGatling();
+        GatlingTestCase gatlingTestCase = tempTestCaseGatling.parse();
+        assertNotNull(gatlingTestCase);
+
+        TestRailCase testRailCase = tempTestCaseGatling.toTestRailCase(gatlingTestCase);
+        assertEquals("My First Scenario", testRailCase.getTitle());
+        assertEquals(1, testRailCase.getSectionId());
+    }
+
 }

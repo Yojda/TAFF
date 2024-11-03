@@ -1,6 +1,7 @@
 package ca.etsmtl.taf.testrail.service.collector;
 
 import ca.etsmtl.taf.testrail.model.entity.GatlingTestCase;
+import ca.etsmtl.taf.testrail.model.entity.TestRailCase;
 
 import java.io.*;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class TempTestCaseGatling {
     private static final Logger logger = Logger.getLogger(TempTestCaseGatling.class.getName());
 
     static {
+        logger.setLevel(Level.OFF);
         try {
             String currentPath = System.getProperty("user.dir");
             logger.info("Chemin de l'exécution : " + currentPath);
@@ -37,14 +39,11 @@ public class TempTestCaseGatling {
     private String scenarioName;
     private String baseUrl;
     private String userInjection;
-
-    private Map<String, Integer> usersInjection = new HashMap<>();
-    public GatlingTestCase parse() {
+    public GatlingTestCase parse(String SimulationFile) {
         logger.setLevel(Level.INFO);
-        String SimulationPath = "SimpleSimulation.java";
-        logger.info("SimulationPath=" + SimulationPath);
+        logger.info("SimulationFile=" + SimulationFile);
         String gatlingScript = "";
-        try (InputStream inputStream = TempTestCaseGatling.class.getClassLoader().getResourceAsStream(SimulationPath);
+        try (InputStream inputStream = TempTestCaseGatling.class.getClassLoader().getResourceAsStream(SimulationFile);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -94,5 +93,16 @@ public class TempTestCaseGatling {
         logger.info("GatlingTestCase: " + gatlingTestCase);
 
         return gatlingTestCase;
+    }
+
+    public GatlingTestCase parse() {
+        return parse("SimpleSimulation.java");
+    }
+
+    public TestRailCase toTestRailCase(GatlingTestCase gatlingTestCase) {
+        TestRailCase testRailCase = new TestRailCase();
+        testRailCase.setTitle(gatlingTestCase.getScenarioName());
+        testRailCase.setSectionId(1); // Default section
+        return testRailCase;
     }
 }
