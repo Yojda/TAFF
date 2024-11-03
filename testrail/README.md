@@ -17,7 +17,7 @@ It is build as a Spring Boot multi-module application with backend as the main m
 
 ### Build the project
 
-To build the project, run the following command:
+To build the project, run the following command in the root directory of the project:
 
 ```bash
 mvn clean install
@@ -25,7 +25,7 @@ mvn clean install
 
 ### Run the project
 
-To run the project, run the following command:
+To run the project, run the following command in the root directory of the project:
 
 ```bash
 mvn spring-boot:run -pl backend
@@ -236,8 +236,16 @@ Each entity have a dedicated test file that test each of the interactions with t
 
 We also have done some integration tests to validate data creation and deletion in the database and TestRail API through the managing classes.
 
+Tests can be run with the following command when you are in the taf directory:
+
+```bash
+mvn test
+```
+
 ---
 
 #### Job to be done
 
 We wrote "TODO" comments in the code to indicate missing parts or parts that need to be improved. We also wrote some comments to indicate what we have done and what we have not done.
+
+It will also be necessary to create and then link the backend with frontend pages.
