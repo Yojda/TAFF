@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ca.etsmtl.taf.payload.request.TestApiRequest;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,7 +18,17 @@ import org.springframework.beans.factory.annotation.Value;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(
+    origins = {
+        "http://localhost:4200"
+        },
+    methods = {
+                RequestMethod.OPTIONS,
+                RequestMethod.GET,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.POST
+},maxAge = 3600)
 @RestController
 @RequestMapping("/api/testapi")
 public class TestApiController {
@@ -30,13 +40,19 @@ public class TestApiController {
 
     @PostMapping("/checkApi")
     public ResponseEntity<String> testApi(@Valid @RequestBody TestApiRequest testApiRequest) throws URISyntaxException, IOException, InterruptedException {
+        System.out.println("********************************************* Hi im here");
         var uri = new URI(Test_API_microservice_url+":"+Test_API_microservice_port+"/microservice/testapi/checkApi");
         uri.toString().trim();
+        System.out.println("************************"+uri.toString().trim());
         ObjectMapper objectMapper = new ObjectMapper();
+
+        
 
         String requestBody = objectMapper
                 .writerWithDefaultPrettyPrinter()
                 .writeValueAsString(testApiRequest);
+
+        System.out.println("-------************************"+requestBody);
 
         HttpClient client = HttpClient.newHttpClient();
 
@@ -47,6 +63,8 @@ public class TestApiController {
 
         HttpResponse<String> response =
                 client.send(request, BodyHandlers.ofString());
+
+        System.out.println("/*/*/*/*" + response.body());
         return ResponseEntity.ok(response.body());
     }
 }
