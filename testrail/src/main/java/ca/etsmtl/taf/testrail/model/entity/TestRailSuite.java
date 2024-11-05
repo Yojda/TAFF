@@ -15,7 +15,9 @@ public class TestRailSuite extends TestRailData{
         /*
         * Class to save suites from TestRail in TAF database to be used in the application.
         * Class build assisted by IA (copilot & chatGPT & intellij)
-        * Tests : TODO
+        * Tests :
+        *       - Unit tests : TestUnitTestRailSuite
+        *       - Integration tests : TODO
         * */
 
         @Id

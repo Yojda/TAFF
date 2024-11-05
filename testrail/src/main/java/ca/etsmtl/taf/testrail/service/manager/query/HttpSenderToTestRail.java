@@ -1,4 +1,4 @@
-package ca.etsmtl.taf.testrail.service.query;
+package ca.etsmtl.taf.testrail.service.manager.query;
 
 import org.springframework.stereotype.Component;
 
@@ -25,23 +25,22 @@ public class HttpSenderToTestRail {
         // TODO : baseUrl, username and password will depend on the user
     }
 
-    private Optional<String> send(HttpRequest request) {
+    private SendResultData send(HttpRequest request) {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                return Optional.of(response.body());
+                return new SendResultData(null, 200, response);
             } else {
-                return Optional.empty();
+                return new SendResultData(null, response.statusCode(), response);
             }
         } catch (Exception e) {
-            e.printStackTrace(); // TODO : improve logging
-            return Optional.empty();
+            return new SendResultData(e, 500, null);
         }
     }
 
-    public Optional<String> postSender(String route, String body) {
+    public SendResultData postSender(String route, String body) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(java.net.URI.create(baseUrl + route))
                 .header("Authorization", "Basic " + java.util.Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))
@@ -52,7 +51,7 @@ public class HttpSenderToTestRail {
         return send(request);
     }
 
-    public Optional<String> getSender(String route) {
+    public SendResultData getSender(String route) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(java.net.URI.create(baseUrl + route))
                 .header("Authorization", "Basic " + java.util.Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))

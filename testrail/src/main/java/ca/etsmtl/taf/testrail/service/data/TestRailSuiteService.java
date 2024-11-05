@@ -12,8 +12,7 @@ public class TestRailSuiteService {
     /*
      * This class is used to interact with the GatlingResult table in the database.
      * Assisted by IA (copilot & chatGPT & intellij)
-     * Tests : TODO
-     *          To be completed and tested
+     * Tests : TestUnitTestRailProject
      * */
 
     @Autowired
@@ -31,8 +30,16 @@ public class TestRailSuiteService {
         return testRAilSuiteRepository.findByTRId(id);
     }
 
+    public Optional<TestRailSuite> findByName(String name) {
+        return testRAilSuiteRepository.findByName(name);
+    }
+
     public void deleteByTafId(Long tafId) {
         testRAilSuiteRepository.deleteById(tafId);
+    }
+
+    public void deleteAll() {
+        testRAilSuiteRepository.deleteAll();
     }
 
 

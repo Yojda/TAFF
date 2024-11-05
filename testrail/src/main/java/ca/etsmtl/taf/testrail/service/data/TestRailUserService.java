@@ -13,8 +13,7 @@ public class TestRailUserService {
     /*
      * This class is used to interact with the GatlingResult table in the database.
      * Assisted by IA (copilot & chatGPT & intellij)
-     * Tests : TODO
-     *          To be completed and tested
+     * Tests : TestUnitTestRailUser
      * */
 
 
@@ -27,7 +26,7 @@ public class TestRailUserService {
     }
 
     // Find a TestRailUser by their unique ID (tafId)
-    public Optional<TestRailUser> findById(Long tafId) {
+    public Optional<TestRailUser> findByTafId(Long tafId) {
         return repository.findById(tafId);
     }
 
@@ -53,6 +52,10 @@ public class TestRailUserService {
 
     // Delete a TestRailUser by their unique ID (tafId)
     public void deleteById(Long tafId) {
+        repository.deleteById(tafId);
+    }
+
+    public void deleteByTafId(Long tafId) {
         repository.deleteById(tafId);
     }
 

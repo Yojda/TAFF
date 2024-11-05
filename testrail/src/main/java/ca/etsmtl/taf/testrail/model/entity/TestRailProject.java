@@ -16,7 +16,9 @@ public class TestRailProject extends TestRailData {
     /*
     * Class to save projects from TestRail in TAF database to be used in the application.
     * Class build assisted by IA (copilot & chatGPT & intellij)
-    * Tests : TODO
+    * Tests :
+    *       - Unit tests : TestUnitTestRailProject
+    *       - Integration tests : TODO
     * */
 
     @Id
@@ -52,6 +54,9 @@ public class TestRailProject extends TestRailData {
 
     @Column(name = "url")
     private String url;
+
+    @Column(name="is_saved")
+    private Boolean isSaved=false;
 
     @ManyToMany(mappedBy = "projects")
     private List<TestRailUser> users;

@@ -10,11 +10,12 @@ import java.util.Optional;
 public interface TestRailSuiteRepository extends JpaRepository<TestRailSuite, Long> {
     /*
      * This interface is used to interact with the TestRailProject table in the database.
-     * TODO
-     *     To be completed and tested
+     * Tests : TestUnitTestRailProject
      * Assisted by IA (copilot & chatGPT & intellij)
      * */
 
     Optional<TestRailSuite> findByTRId(Integer id);
+
+    Optional<TestRailSuite> findByName(String name);
 
 }
