@@ -57,4 +57,25 @@ public class TestTempTestCaseGatling {
         assertEquals(1, testRailCase.getSectionId());
     }
 
+    @Test
+    public void testRecordedSimulation() {
+        String fileName = "RecordedSimulation.java";
+        TempTestCaseGatling tempTestCaseGatling = new TempTestCaseGatling();
+        GatlingTestCase gatlingTestCase = tempTestCaseGatling.parse(fileName);
+        assertNotNull(gatlingTestCase);
+        assertEquals("RecordedSimulation", gatlingTestCase.getScenarioName());
+        assertEquals("https://computer-database.gatling.io", gatlingTestCase.getBaseUrl());
+        assertEquals("(scn.injectOpen(atOnceUsers(20))).protocols(httpProtocol)", gatlingTestCase.getUserInjection());
+    }
+
+    @Test
+    public void testComputerDatabaseSimulation() {
+        String fileName = "ComputerDatabaseSimulation.java";
+        TempTestCaseGatling tempTestCaseGatling = new TempTestCaseGatling();
+        GatlingTestCase gatlingTestCase = tempTestCaseGatling.parse(fileName);
+        assertNotNull(gatlingTestCase);
+        assertEquals("Users", gatlingTestCase.getScenarioName());
+        assertEquals("https://computer-database.gatling.io", gatlingTestCase.getBaseUrl());
+        assertEquals("(users.injectOpen(rampUsers(10).during(10)),admins.injectOpen(rampUsers(2).during(10))).protocols(httpProtocol)", gatlingTestCase.getUserInjection());
+    }
 }
