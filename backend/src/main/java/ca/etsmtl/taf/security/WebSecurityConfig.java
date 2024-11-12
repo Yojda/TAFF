@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import ca.etsmtl.taf.security.jwt.AuthEntryPointJwt;
 import ca.etsmtl.taf.security.jwt.AuthTokenFilter;
 import ca.etsmtl.taf.security.services.UserDetailsServiceImpl;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -51,7 +52,7 @@ public class WebSecurityConfig {
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeHttpRequests((authz) -> authz
-          .requestMatchers("/**").permitAll() // جایگزین antMatchers
+          .requestMatchers(new AntPathRequestMatcher("/**")).permitAll() // جایگزین antMatchers
         );
   
       http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
